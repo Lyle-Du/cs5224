@@ -1,1 +1,115 @@
-/* Empty. Add your own CSS if you like */
+.center-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.center-container .center-content {
+  justify-content: center;
+  width: 60%;
+}
+
+.logo-container {
+  display:flex;
+  justify-content: center;
+}
+
+.logo div {
+  font-size: 8rem;
+  display: inline;
+}
+
+.logo .ion-man{
+  font-size: 6.5rem;
+}
+
+.main-search-box-container {
+  display:flex;
+  justify-content: center;
+  height: 64px;
+  width: 100%;
+  border-radius: 32px;
+  background: #F1F3F4;
+}
+.main-search-box {
+  display: inline-flex;
+  width: 100%;
+  font-size: 24px;
+}
+.main-search-box .search-box{
+  height: 64px;
+  padding-left: 3%;
+  background: inherit;
+  width: 100%;
+  font-size: inherit;
+}
+.main-search-box .search-icon {
+  height: inherit;
+  padding-top: 5px;
+  background: inherit;
+  width: auto;
+  font-size: inherit;
+}
+
+.main-search-toggle-container {
+  padding-top: 12px;
+  display: flex;
+  flex-wrap:wrap;
+  width:100%;
+  justify-content:center;
+}
+
+.main-search-toggle-container .switch {
+  padding: 10px;
+}
+
+.main-search-toggle-container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.main-search-toggle-container .switch input .switch-content{
+  padding: 8px;
+  white-space: nowrap;
+  border-radius: 40px;
+  color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.main-search-toggle-container .switch:nth-child(4n+1) .switch-content{
+  background: #4F86EC;
+}
+.main-search-toggle-container .switch:nth-child(4n+2) .switch-content{
+  background: #DA5040;
+}
+.main-search-toggle-container .switch:nth-child(4n+3) .switch-content{
+  background: #F3BD42;
+}
+.main-search-toggle-container .switch:nth-child(4n+4) .switch-content{
+  background: #4F86EC;
+}
+.main-search-toggle-container .switch:nth-child(4n+5) .switch-content{
+  background: #56A55C;
+}
+
+.main-search-toggle-container .switch input:checked+.switch-content{
+  padding: 8px;
+  white-space: nowrap;
+  border-radius: 40px;
+  color: white;
+  opacity: 1;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.main-search-toggle-container .switch input:not(:checked)+.switch-content{
+  padding: 8px;
+  white-space: nowrap;
+  border-radius: 40px;
+  color: white;
+  opacity: 0.5;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
