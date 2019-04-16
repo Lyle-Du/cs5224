@@ -1,5 +1,37 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>Search</h1>
+<ion-view view-title="iTrip">
+  <ion-content has-bouncing="false">
+    <div class="center-container">
+      <div class="center-content">
+        <br/>
+        <div class="logo-container">
+          <div class="logo">
+            <h1>
+              <img src="img/logo-i.png" height="110px;"></img>
+            <!-- <div class="icon ion-man"style='color: #4F86EC'></div> -->
+            <div style='color: #DA5040'>T</div>
+            <div style='color: #F3BD42'>r</div>
+            <div style='color: #4F86EC'>i</div>
+            <div style='color: #56A55C'>p</div>
+            </h1>
+          </div>
+        </div>
+
+        <div class="main-search-box-container">
+          <div class="main-search-box">
+            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences"></input>
+            <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
+          </div>
+        </div>
+
+        <div class="main-search-toggle-container">
+          <label class="switch" ng-repeat="item in category">
+            <input type="checkbox">
+            <span class="switch-content">{{item["name"]}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
   </ion-content>
 </ion-view>
