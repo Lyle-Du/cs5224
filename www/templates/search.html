@@ -11,14 +11,14 @@
 
         <div class="main-search-box-container">
           <div class="main-search-box">
-            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences"></input>
-            <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
+            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city" ></input>
+            <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button" ng-click="search()"></button>
           </div>
         </div>
 
         <div class="main-search-toggle-container">
           <label class="switch" ng-repeat="item in category">
-            <input type="checkbox" value="{{item['name']}}" ng-checked="checkedCategory.indexOf(item['name']) > -1" ng-click="toggleCategory(item['name'])">
+            <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
             <span class="switch-content">{{item["name"]}}</span>
           </label>
         </div>

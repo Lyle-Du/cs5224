@@ -27,7 +27,7 @@ ion-content {
 .main-search-box-container {
   display:flex;
   justify-content: center;
-  height: 64px;
+  height: 44px;
   width: 100%;
   border-radius: 32px;
   background: #F1F3F4;
@@ -36,17 +36,19 @@ ion-content {
   display: inline-flex;
   width: 100%;
   font-size: 24px;
+  align-items: center;
 }
 .main-search-box .search-box{
-  height: 64px;
+  height: inherit;
   padding-left: 3%;
   background: inherit;
   width: 100%;
   font-size: inherit;
+  color: #666;
 }
 .main-search-box .search-icon {
   height: inherit;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   background: inherit;
   width: auto;
   font-size: inherit;
