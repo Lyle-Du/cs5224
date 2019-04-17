@@ -13,18 +13,15 @@ ion-content {
   width: 60%;
 }
 
+.center-container .center-content-inline {
+  justify-content: center;
+  display: inline-flex;
+  width: 90%;
+}
+
 .logo-container {
   display:flex;
   justify-content: center;
-}
-
-.logo div {
-  font-size: 8rem;
-  display: inline;
-}
-
-.logo .ion-man{
-  font-size: 6.5rem;
 }
 
 .main-search-box-container {

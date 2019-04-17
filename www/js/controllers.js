@@ -29,40 +29,59 @@ angular.module('starter.controllers', ['starter.services'])
 
 .controller('SearchCtrl', function($scope, SearchService) {
   $scope.checkedCategory = []
-  $scope.category = [
-  {
-    "id": "4d4b7104d754a06370d81259",
-    "name": "Arts & Entertainment"
-  },
-  {
-    "id": "4d4b7105d754a06372d81259",
-    "name": "College & University"
-  },
-  {
-    "id": "4d4b7105d754a06373d81259",
-    "name": "Event"
-  },
-  {
-    "id": "4d4b7105d754a06374d81259",
-    "name": "Food"
-  },
-  {
-    "id": "4d4b7105d754a06376d81259",
-    "name": "Nightlife Spot"
-  },
-  {
-    "id": "4d4b7105d754a06377d81259",
-    "name": "Outdoors & Recreation"
-  },
-  {
-    "id": "4d4b7105d754a06375d81259",
-    "name": "Professional & Other Places"
-  },
-  {
-    "id": "4d4b7105d754a06378d81259",
-    "name": "Shop & Service"
-  }
-]
+  $scope.category = SearchService.category()
+//   [
+//   {
+//     "id": "4d4b7104d754a06370d81259",
+//     "name": "Arts & Entertainment"
+//   },
+//   {
+//     "id": "4d4b7105d754a06372d81259",
+//     "name": "College & University"
+//   },
+//   {
+//     "id": "4d4b7105d754a06373d81259",
+//     "name": "Event"
+//   },
+//   {
+//     "id": "4d4b7105d754a06374d81259",
+//     "name": "Food"
+//   },
+//   {
+//     "id": "4d4b7105d754a06376d81259",
+//     "name": "Nightlife Spot"
+//   },
+//   {
+//     "id": "4d4b7105d754a06377d81259",
+//     "name": "Outdoors & Recreation"
+//   },
+//   {
+//     "id": "4d4b7105d754a06375d81259",
+//     "name": "Professional & Other Places"
+//   },
+//   {
+//     "id": "4d4b7105d754a06378d81259",
+//     "name": "Shop & Service"
+//   }
+// ]
+// Toggle selection for a given fruit by name
+  $scope.toggleCategory = function toggleCategory(item) {
+    var idx = $scope.checkedCategory.indexOf(item);
+    // Is currently selected
+    if (idx > -1) {
+      $scope.checkedCategory.splice(idx, 1);
+    }
+    // Is newly selected
+    else {
+      $scope.checkedCategory.push(item);
+    }
+    console.log($scope.checkedCategory)
+  };
+})
+
+.controller('SubsearchCtrl', function($scope, SearchService) {
+  $scope.checkedCategory = []
+  $scope.category = SearchService.venues()
 // Toggle selection for a given fruit by name
   $scope.toggleCategory = function toggleCategory(item) {
     var idx = $scope.checkedCategory.indexOf(item);

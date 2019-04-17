@@ -40,6 +40,7 @@ angular.module('starter.services', [])
       console.log(data);
       deferred.resolve(data);
     }).error(function(data) {
+      console.log(data);
       deferred.reject();
     });
 

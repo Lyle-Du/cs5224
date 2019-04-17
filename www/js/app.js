@@ -45,6 +45,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+
+  .state('app.subsearch', {
+    url: '/subsearch',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/subsearch.html',
+        controller: 'SubsearchCtrl'
+      }
+    }
+  })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/search');
 });
