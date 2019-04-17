@@ -1,4 +1,48 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.center-container .center-content {
+  justify-content: center;
+  width: 60%;
+}
+
+.logo-container {
+  display:flex;
+  justify-content: center;
+}
+
 .logo div {
   font-size: 8rem;
   display: inline;
+}
+
+.main-search-box-container {
+  display:flex;
+  justify-content: center;
+  height: 64px;
+  width: 100%;
+  border-radius: 32px;
+  background: #F1F3F4;
+}
+.main-search-box {
+  display: inline-flex;
+  width: 100%;
+  font-size: 24px;
+}
+.main-search-box .search-box{
+  height: 64px;
+  padding-left: 3%;
+  background: inherit;
+  width: 100%;
+  font-size: inherit;
+}
+.main-search-box .search-icon {
+  height: inherit;
+  padding-top: 5px;
+  background: inherit;
+  width: auto;
+  font-size: inherit;
 }
