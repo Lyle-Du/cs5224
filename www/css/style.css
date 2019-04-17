@@ -82,19 +82,19 @@ ion-content {
   transition: .4s;
 }
 
-.main-search-toggle-container .switch:nth-child(4n+1) .switch-content{
+.main-search-toggle-container .switch:nth-child(5n+1) .switch-content{
   background: #4F86EC;
 }
-.main-search-toggle-container .switch:nth-child(4n+2) .switch-content{
+.main-search-toggle-container .switch:nth-child(5n+2) .switch-content{
   background: #DA5040;
 }
-.main-search-toggle-container .switch:nth-child(4n+3) .switch-content{
+.main-search-toggle-container .switch:nth-child(5n+3) .switch-content{
   background: #F3BD42;
 }
-.main-search-toggle-container .switch:nth-child(4n+4) .switch-content{
+.main-search-toggle-container .switch:nth-child(5n+4) .switch-content{
   background: #4F86EC;
 }
-.main-search-toggle-container .switch:nth-child(4n+5) .switch-content{
+.main-search-toggle-container .switch:nth-child(5n+5) .switch-content{
   background: #56A55C;
 }
 

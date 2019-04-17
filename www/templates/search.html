@@ -25,7 +25,7 @@
 
         <div class="main-search-toggle-container">
           <label class="switch" ng-repeat="item in category">
-            <input type="checkbox">
+            <input type="checkbox" value="{{item['name']}}" ng-checked="checkedCategory.indexOf(item['name']) > -1" ng-click="toggleCategory(item['name'])">
             <span class="switch-content">{{item["name"]}}</span>
           </label>
         </div>
