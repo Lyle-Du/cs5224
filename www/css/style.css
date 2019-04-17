@@ -2,6 +2,11 @@ ion-content {
   min-width: 800px;
 }
 
+ion-spinner+.search-icon {
+  position: relative;
+  margin-left: -48px;
+}
+
 .center-container {
   display: flex;
   justify-content: center;

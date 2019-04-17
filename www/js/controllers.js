@@ -32,23 +32,30 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form = {}
   $scope.form.city = ''
   $scope.form.category = []
+  $scope.view = {}
+  $scope.view.isSearchClickable = true
   SearchService.category().then(
     function (data) {
         $scope.category = data;
     },
     function () {
-      console.log('load allProjectsOrStreets error')
+      console.log('load category error')
     })
 
   $scope.search = function search() {
     console.log($scope.form)
+    console.log('loading starts')
+    $scope.view.isSearchClickable = false
     SearchService.venueByCity($scope.form).then(
       function (data) {
           console.log(data)
       },
       function () {
-        console.log('load allProjectsOrStreets error')
-      })
+        console.log('search error')
+      }).finally(function() {
+        $scope.view.isSearchClickable = true
+        console.log('loading finished')
+      });
   };
 
   // Toggle selection for a given fruit by name
@@ -71,16 +78,30 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form = {}
   $scope.form.city = ''
   $scope.form.category = []
+  $scope.view = {}
+  $scope.view.isSearchClickable = true
   SearchService.category().then(
     function (data) {
         $scope.category = data;
     },
     function () {
-      console.log('load allProjectsOrStreets error')
+      console.log('load category error')
     })
 
   $scope.search = function search() {
     console.log($scope.form)
+    console.log('loading starts')
+    $scope.view.isSearchClickable = false
+    SearchService.venueByCity($scope.form).then(
+      function (data) {
+          console.log(data)
+      },
+      function () {
+        console.log('search error')
+      }).finally(function() {
+        $scope.view.isSearchClickable = true
+        console.log('loading finished')
+      });
   };
 
   // Toggle selection for a given fruit by name

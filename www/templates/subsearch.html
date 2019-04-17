@@ -1,22 +1,25 @@
 <ion-view view-title="iTrip">
   <ion-content has-bouncing="false">
     <br/>
-    <div class="center-container">
-      <div class="center-content-inline">
-        <img src="img/logo.png" height="60px;"></img>
-        <div class="main-search-box-container">
-          <div class="main-search-box">
-            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences"></input>
-            <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
+    <div>
+      <div class="center-container">
+        <div class="center-content-inline">
+          <img src="img/logo.png" height="60px;"></img>
+          <div class="main-search-box-container">
+            <div class="main-search-box">
+              <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city"></input>
+              <ion-spinner ng-style="{'visibility': !view.isSearchClickable?'visible':'hidden'}"></ion-spinner>
+              <button type="button" ng-click="search()" ng-style="{'visibility': view.isSearchClickable?'visible':'hidden'}" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="main-search-toggle-container">
-      <label class="switch" ng-repeat="item in category">
-        <input type="checkbox" value="{{item['name']}}" ng-checked="checkedCategory.indexOf(item['name']) > -1" ng-click="toggleCategory(item['name'])">
-        <span class="switch-content">{{item["name"]}}</span>
-      </label>
+      <div class="main-search-toggle-container">
+        <label class="switch" ng-repeat="item in category">
+          <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
+          <span class="switch-content">{{item["name"]}}</span>
+        </label>
+      </div>
     </div>
   </ion-content>
 </ion-view>
