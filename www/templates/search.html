@@ -1,34 +1,35 @@
-<ion-view view-title="Inspired by Google">
-  <ion-content>
-    <div class="center-container"><div class="center-content">
-    <div class="logo-container">
-      <div class="logo">
-        <h1>
-        <div style='color: #4F86EC'>i</div>
-        <div style='color: #DA5040'>T</div>
-        <div style='color: #F3BD42'>r</div>
-        <div style='color: #4F86EC'>i</div>
-        <div style='color: #56A55C'>p</div>
-        </h1>
-      </div>
-    </div>
-
-    <div class="main-search-box-container">
-      <div class="main-search-box">
-        <input class="search-box" type="text" type="search" placeholder="City, Country"></input>
-        <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
-      </div>
-    </div>
-    </div>
-</div>
-    <!-- <div class="inputContainer input-search">
-        <i class="icon ion-search placeholder-icon input-prefix"></i>
-        <input type="text" id='searchProjOrStrt' type="search" style="font-size:16px;" placeholder="City, Country" ng-model="search.projectName" ng-change="autoComplete()"></input>
-        <div class="input-suffix">
-          <div class="icon-overlap-container">
-            <button style="z-index:10;position:absolute;right:0;top:0px;" ng-if="search.projectName.length" class="button button-stable button-icon ion-close-circled" ng-click="clearSearch()"></button>
+<ion-view view-title="iTrip">
+  <ion-content has-bouncing="false">
+    <div class="center-container">
+      <div class="center-content">
+        <br/>
+        <div class="logo-container">
+          <div class="logo">
+            <h1>
+              <img src="img/logo-i.png" height="110px;"></img>
+            <!-- <div class="icon ion-man"style='color: #4F86EC'></div> -->
+            <div style='color: #DA5040'>T</div>
+            <div style='color: #F3BD42'>r</div>
+            <div style='color: #4F86EC'>i</div>
+            <div style='color: #56A55C'>p</div>
+            </h1>
           </div>
         </div>
-    </div> -->
+
+        <div class="main-search-box-container">
+          <div class="main-search-box">
+            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences"></input>
+            <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
+          </div>
+        </div>
+
+        <div class="main-search-toggle-container">
+          <label class="switch" ng-repeat="item in category">
+            <input type="checkbox">
+            <span class="switch-content">{{item["name"]}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

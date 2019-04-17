@@ -1,7 +1,28 @@
 angular.module('starter.services', [])
-BASE_URL = "http://localhost:9000/api"
+.factory('SearchService', function ($q, $timeout, $http) {
 
-.factory('SearchServices', function ($q, $timeout, $http) {
+  BASE_URL = "http://localhost:9000/api";
+
+  var getCategories = function () {
+      console.log('getCategories');
+      var deferred = $q.defer();
+      var request = $http({
+          method: "get",
+          url: BASE_URL + "/catagory",
+          crossDomain: true,
+          timeout: 5000,
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+      });
+      request.success(function (data) {
+          console.log(data);
+          deferred.resolve(data);
+      }).error(function (data) {
+          deferred.reject();
+      });
+      return deferred.promise;
+  };
 
   var getAllVenues = function() {
     console.log('Get all venues');
@@ -49,11 +70,8 @@ BASE_URL = "http://localhost:9000/api"
   }
 
   return {
-    getAllAenues: getAllAenues,
-    getVenueByCity: getVenueByCity
+    category: getCategories,
+    venues: getAllVenues,
+    venueByCity: getVenueByCity
   }
-})
-
-// get all the category
-
-// get list of venues
+});

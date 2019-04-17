@@ -27,6 +27,6 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SearchCtrl', function($scope) {
-  $scope.nimade = "sdsadsadsadas";
+.controller('SearchCtrl', function($scope, SearchService) {
+  $scope.category = SearchService.category()
 })
