@@ -85,6 +85,21 @@ angular.module('starter.controllers', ['starter.services'])
       center: {lat: -34.397, lng: 150.644},
       zoom: 8
     });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        map.setZoom(10)
+        map.setCenter(pos);
+      }, function() {
+        console.log("Failed to get current position")
+      });
+    } else {
+      console.log("Browser Geolocation is not supported")
+    }
   }
 
   $scope.initMap()
@@ -116,7 +131,6 @@ angular.module('starter.controllers', ['starter.services'])
       mapMarkers.push(marker)
 
       marker.addListener('click', function() {
-        // Nagivate to next screen
         $state.go('app.details')
       });
     }
