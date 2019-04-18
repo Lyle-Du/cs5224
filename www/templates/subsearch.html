@@ -29,7 +29,7 @@
       <div class="subsearch-container-row">
         <div class="subsearch-container-left">
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
-            <div class="card" ng-repeat="item in searchResult">
+            <div class="card" ng-repeat="item in searchResult" ng-click="cardOnClicked(item)">
               <img src="/img/logo.png"></img>
               <h1>{{item['name']}}</h1>
               <h2>{{item['address']}}</h2>
