@@ -34,9 +34,8 @@
               <img ng-if="item['prefix']==undefined" ng-src="/img/logo.png" style="object-fit: contain;"></img>
               <h1>{{item['name']}}</h1>
               <h2>{{item['address']}}</h2>
-              <p>
-                <span ng-repeat="category in item['categories']">{{category['name']}}</span>
-              </p>
+              <p> <span ng-repeat="category in item['categories']">{{category['name']}}</span> </p>
+              <button class="button button-small button-clear button-positive" type="button" name="button">People's Review</button>
             </div>
           </ion-scroll>
         </div>
