@@ -207,12 +207,34 @@ $scope.searchResult = [{
     $state.go('app.details')
   }
 
+  var mouseoverTimer;
   $scope.cardOnMouseover = function onMouseover(item) {
-    // TODO: make the animation smoothly
-    var pos = {
-      lat: item.lat,
-      lng: item.lng
-    };
-    map.setCenter(pos);
+    mouseoverTimer = setTimeout(function () {
+      var pos = {
+        lat: item.lat,
+        lng: item.lng
+      };
+      map.panTo(pos);
+
+      for (var i = 0; i < $scope.searchResult.length; i++) {
+        if ($scope.searchResult[i].id == item.id) {
+          mapMarkers[i].setOpacity(1.0)
+          if (mapMarkers[i].getAnimation() == null) {
+            mapMarkers[i].setAnimation(google.maps.Animation.BOUNCE)
+          }
+        } else {
+          mapMarkers[i].setAnimation(null)
+          mapMarkers[i].setOpacity(0.3)
+        }
+      }
+    }, 1000);
+  }
+
+  $scope.cardOnMouseout = function onMouseout() {
+    clearTimeout(mouseoverTimer)
+    mapMarkers.forEach(function(marker) {
+      marker.setAnimation(null)
+      marker.setOpacity(1.0)
+    })
   }
 })
