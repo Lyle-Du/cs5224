@@ -27,7 +27,7 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SearchCtrl', function($scope, SearchService) {
+.controller('SearchCtrl', function($scope, SearchService, $state, $ionicHistory) {
   $scope.category = []
   $scope.form = {}
   $scope.form.city = ''
@@ -49,6 +49,11 @@ angular.module('starter.controllers', ['starter.services'])
     SearchService.venueByCity($scope.form).then(
       function (data) {
           console.log(data)
+          $state.go('app.subsearch')
+          $ionicHistory.nextViewOptions({
+              disableBack: true
+          });
+        $ionicHistory.clearHistory();
       },
       function () {
         console.log('search error')

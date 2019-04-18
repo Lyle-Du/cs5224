@@ -1,24 +1,52 @@
 <ion-view view-title="iTrip">
-  <ion-content has-bouncing="false">
-    <br/>
-    <div>
-      <div class="center-container">
-        <div class="center-content-inline">
-          <img src="img/logo.png" height="60px;"></img>
-          <div class="main-search-box-container">
-            <div class="main-search-box">
-              <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city"></input>
-              <ion-spinner ng-style="{'visibility': !view.isSearchClickable?'visible':'hidden'}"></ion-spinner>
-              <button type="button" ng-click="search()" ng-style="{'visibility': view.isSearchClickable?'visible':'hidden'}" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
-            </div>
+  <div style="position:fixed; top:50px; z-index: 99; width:100%">
+    <div class="center-container">
+      <div class="center-content-inline">
+        <img src="img/logo.png" height="60px;"></img>
+        <div class="main-search-box-container">
+          <div class="main-search-box">
+            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city"></input>
+            <ion-spinner ng-style="{'visibility': !view.isSearchClickable?'visible':'hidden'}"></ion-spinner>
+            <button type="button" ng-click="search()" ng-style="{'visibility': view.isSearchClickable?'visible':'hidden'}" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
           </div>
         </div>
       </div>
-      <div class="main-search-toggle-container">
-        <label class="switch" ng-repeat="item in category">
-          <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
-          <span class="switch-content">{{item["name"]}}</span>
-        </label>
+    </div>
+    <div class="main-search-toggle-container" style="margin-top:-12px;">
+      <label class="switch" ng-repeat="item in category">
+        <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
+        <span class="switch-content">{{item["name"]}}</span>
+      </label>
+    </div>
+    <hr/>
+  </div>
+  <ion-content has-bouncing="false" style="margin-top:120px;">
+    <div class="search-result-container">
+      <div class="search-result-left-container">
+        <div class="search-result-item card">
+
+        </div>
+        <div class="search-result-item card">
+
+        </div>
+        <div class="search-result-item card">
+
+        </div>
+        <div class="search-result-item card">
+
+        </div>
+        <div class="search-result-item card">
+
+        </div>
+        <div class="search-result-item card">
+
+        </div>
+      </div>
+
+      <div class="search-result-right-container">
+        <div class="search-result-item">
+
+        </div>
       </div>
     </div>
   </ion-content>

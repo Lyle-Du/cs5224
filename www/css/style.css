@@ -22,6 +22,7 @@ ion-spinner+.search-icon {
   justify-content: center;
   display: inline-flex;
   width: 90%;
+  align-items: center;
 }
 
 .logo-container {
@@ -120,4 +121,46 @@ ion-spinner+.search-icon {
   opacity: 0.5;
   -webkit-transition: .4s;
   transition: .4s;
+}
+
+.search-result-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.search-result-container .search-result-left-container {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.search-result-container .search-result-left-container .search-result-item {
+  margin: 4px;
+  width: 320px;
+  height: 420px;
+}
+
+.search-result-container .search-result-right-container {
+  width: 30%;
+  height: 100%;
+  background: yellow;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.search-result-container .search-result-right-container .search-result-item {
+  width: 100%;
+  margin: 8px;
+  height: 600px;
+  background: blue;
+}
+
+.search-result-container .search-result-left-container .card {
+  box-shadow: 1px 2px 8px 1px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
 }
