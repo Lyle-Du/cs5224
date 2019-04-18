@@ -205,17 +205,26 @@ $scope.searchResult = [
     console.log($scope.form.category)
   };
 
-  $scope.cardOnClicked = function onClicked(item) {
-    console.log("card is clicked")
+  $scope.isCardSelected = []
+  function initIsCardSelected() {
+    $scope.searchResult.forEach(function(result) {
+      $scope.isCardSelected.push(false)
+    })
+  }
+  initIsCardSelected()
+
+  $scope.cardOnClicked = function onClicked(index) {
+    $scope.isCardSelected[index] = !$scope.isCardSelected[index]
   }
 
-  var mouseoverTimer;
+  $scope.returnBgColor = function getBgColor() {
+    return $scope.backgroundColor
+  }
+
+  $scope.mouseoverTimer
   $scope.cardOnMouseover = function onMouseover(item) {
     mouseoverTimer = setTimeout(function () {
-      var pos = {
-        lat: item.lat,
-        lng: item.lng
-      };
+      var pos = {lat:item.lat, lng:item.lng};
       map.panTo(pos);
 
       for (var i = 0; i < $scope.searchResult.length; i++) {
@@ -223,13 +232,14 @@ $scope.searchResult = [
           mapMarkers[i].setOpacity(1.0)
           if (mapMarkers[i].getAnimation() == null) {
             mapMarkers[i].setAnimation(google.maps.Animation.BOUNCE)
+          } else {
+            mapMarkers[i].setAnimation(null)
           }
         } else {
-          mapMarkers[i].setAnimation(null)
           mapMarkers[i].setOpacity(0.3)
         }
       }
-    }, 1000);
+    }, 600);
   }
 
   $scope.cardOnMouseout = function onMouseout() {
