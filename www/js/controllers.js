@@ -76,6 +76,20 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('SubsearchCtrl', function($scope, SearchService, $stateParams) {
+  $scope.$on('$ionicView.enter', function () {
+        $scope.form = $stateParams['searchForm']
+        $scope.searchResult = $stateParams['searchResult']
+        $scope.initMap()
+    });
+
+  // Define Google Map
+  var map;
+  $scope.initMap = function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
 
   $scope.category = []
   $scope.form = $stateParams['searchForm']
