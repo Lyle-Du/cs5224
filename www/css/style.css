@@ -134,7 +134,7 @@ ion-spinner+.search-icon {
   height: 100%;
   display: flex;
   flex-wrap:wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .search-result-container .search-result-left-container .search-result-item {
