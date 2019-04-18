@@ -165,3 +165,7 @@ ion-spinner+.search-icon {
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */
 }
+
+.scroll-bar {
+visibility: hidden;
+}

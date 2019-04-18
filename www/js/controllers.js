@@ -76,12 +76,13 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('SubsearchCtrl', function($scope, SearchService, $stateParams) {
-  $scope.$on('$ionicView.enter', function () {
-        $scope.form = $stateParams['searchForm']
-        $scope.searchResult = $stateParams['searchResult']
-        $scope.initMap()
-    });
-
+  $scope.category = []
+  $scope.form = $stateParams['searchForm']
+  $scope.form.city = $stateParams['searchForm'].city
+  $scope.form.category = $stateParams['searchForm'].category
+  $scope.searchResult = $stateParams['searchResult']
+  $scope.view = {}
+  $scope.view.isSearchClickable = true
   // Define Google Map
   var map;
   $scope.initMap = function initMap() {
@@ -91,11 +92,8 @@ angular.module('starter.controllers', ['starter.services'])
     });
   }
 
-  $scope.category = []
-  $scope.form = $stateParams['searchForm']
-  $scope.searchResult = $stateParams['searchResult']
-  $scope.view = {}
-  $scope.view.isSearchClickable = true
+  $scope.initMap()
+
   SearchService.category().then(
     function (data) {
         $scope.category = data;
@@ -105,12 +103,13 @@ angular.module('starter.controllers', ['starter.services'])
     })
 
   $scope.search = function search() {
-    console.log($scope.form)
     console.log('loading starts')
+    console.log($scope.form)
     $scope.view.isSearchClickable = false
     SearchService.venueByCity($scope.form).then(
       function (data) {
           console.log(data)
+          $scope.searchResult = data
       },
       function () {
         console.log('search error')
