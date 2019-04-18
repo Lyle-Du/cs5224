@@ -27,6 +27,8 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
+.controller('DetailsCtrl', function($scope) {})
+
 .controller('SearchCtrl', function($scope, SearchService, $state, $ionicHistory) {
   $scope.category = []
   $scope.form = {}
@@ -75,7 +77,7 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SubsearchCtrl', function($scope, SearchService, $stateParams) {
+.controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams) {
   $scope.category = []
   $scope.form = $stateParams['searchForm']
   $scope.form.city = $stateParams['searchForm'].city
@@ -94,6 +96,29 @@ angular.module('starter.controllers', ['starter.services'])
   }
 
   $scope.initMap()
+
+  // Define Google Map Markers
+  var mapMarkers = [];
+  $scope.createMarkers = function createMarkers() {
+    for (i = 0; i < $scope.searchResult.length; i++) {
+      var position = {lat: $scope.searchResult[i].lat, lng: $scope.searchResult[i].lng};
+      var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: 'The Marker'
+      });
+
+      marker.addListener('click', function() {
+        // Nagivate to next screen
+        $state.go('app.details')
+      });
+    }
+    if ($scope.searchResult.length > 0) {
+      map.setZoom(17)
+      map.panTo({lat: $scope.searchResult[0].lat, lng: $scope.searchResult[0].lng})
+    }
+  }
+  $scope.createMarkers()
 
   SearchService.category().then(
     function (data) {
