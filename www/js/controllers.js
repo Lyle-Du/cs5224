@@ -203,8 +203,20 @@ $scope.searchResult = [{
     console.log($scope.form.category)
   };
 
-  $scope.cardOnClicked = function onClicked(item) {
-    console.log("card is clicked")
+  $scope.isCardSelected = []
+  function initIsCardSelected() {
+    $scope.searchResult.forEach(function(result) {
+      $scope.isCardSelected.push(false)
+    })
+  }
+  initIsCardSelected()
+
+  $scope.cardOnClicked = function onClicked(index) {
+    $scope.isCardSelected[index] = !$scope.isCardSelected[index]
+  }
+
+  $scope.returnBgColor = function getBgColor() {
+    return $scope.backgroundColor
   }
 
   $scope.mouseoverTimer
@@ -217,7 +229,6 @@ $scope.searchResult = [{
         if ($scope.searchResult[i].id == item.id) {
           mapMarkers[i].setOpacity(1.0)
           if (mapMarkers[i].getAnimation() == null) {
-            console.log("SetAnimation lololo")
             mapMarkers[i].setAnimation(google.maps.Animation.BOUNCE)
           } else {
             mapMarkers[i].setAnimation(null)
