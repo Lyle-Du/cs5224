@@ -195,7 +195,7 @@ ion-spinner+.search-icon {
   margin-right: auto;
   width: 100%;
   height: 70%;
-  object-fit: contain;
+  object-fit: cover;
   border: 1px solid grey;
 }
 .subsearch-container-section .card h1 {

@@ -30,7 +30,8 @@
         <div class="subsearch-container-left">
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
             <div class="card" ng-repeat="item in searchResult" ng-click="cardOnClicked(item)">
-              <img src="/img/logo.png"></img>
+              <img ng-if="item['prefix']!=undefined"ng-src="{{item['prefix']}}600x600{{item['suffix']}}"></img>
+              <img ng-if="item['prefix']==undefined" ng-src="/img/logo.png" style="object-fit: contain;"></img>
               <h1>{{item['name']}}</h1>
               <h2>{{item['address']}}</h2>
               <p>
