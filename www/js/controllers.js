@@ -179,7 +179,6 @@ angular.module('starter.controllers', ['starter.services'])
       function (data) {
           console.log(data)
           $scope.searchResult = data
-          // $scope.initMap()
           $scope.createMarkers()
       },
       function () {
@@ -204,7 +203,16 @@ angular.module('starter.controllers', ['starter.services'])
     console.log($scope.form.category)
   };
 
-  $scope.cardOnClicked = function onClicked(id) {
+  $scope.cardOnClicked = function onClicked(item) {
     $state.go('app.details')
+  }
+
+  $scope.cardOnMouseover = function onMouseover(item) {
+    // TODO: make the animation smoothly
+    var pos = {
+      lat: item.lat,
+      lng: item.lng
+    };
+    map.setCenter(pos);
   }
 })
