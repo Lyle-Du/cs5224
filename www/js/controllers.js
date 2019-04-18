@@ -76,14 +76,10 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('SubsearchCtrl', function($scope, SearchService, $stateParams) {
-  $scope.$on('$ionicView.enter', function () {
-        $scope.form = $stateParams['searchForm']
-        $scope.searchResult = $stateParams['searchResult']
-    });
+
   $scope.category = []
-  $scope.form = {}
-  $scope.form.city = ''
-  $scope.form.category = []
+  $scope.form = $stateParams['searchForm']
+  $scope.searchResult = $stateParams['searchResult']
   $scope.view = {}
   $scope.view.isSearchClickable = true
   SearchService.category().then(
