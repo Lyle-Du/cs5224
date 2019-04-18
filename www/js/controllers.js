@@ -181,4 +181,8 @@ angular.module('starter.controllers', ['starter.services'])
     }
     console.log($scope.form.category)
   };
+
+  $scope.cardOnClicked = function onClicked(id) {
+    $state.go('app.details')
+  }
 })
