@@ -81,6 +81,7 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form.city = $stateParams['searchForm'].city
   $scope.form.category = $stateParams['searchForm'].category
   $scope.searchResult = $stateParams['searchResult']
+  $scope.searchResult = [{},{},{},{},{}]
   $scope.view = {}
   $scope.view.isSearchClickable = true
   // Define Google Map
