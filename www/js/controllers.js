@@ -49,13 +49,10 @@ angular.module('starter.controllers', ['starter.services'])
     SearchService.venueByCity($scope.form).then(
       function (data) {
           console.log(data)
-          $state.go('app.subsearch')
-          $ionicHistory.nextViewOptions({
-              disableBack: true
-          });
-        $ionicHistory.clearHistory();
-      },
-      function () {
+          $state.go('app.subsearch', { "searchForm": $scope.form, "searchResult": data })
+          $ionicHistory.nextViewOptions({ disableBack: true });
+          $ionicHistory.clearHistory();
+      }, function () {
         console.log('search error')
       }).finally(function() {
         $scope.view.isSearchClickable = true
@@ -78,7 +75,11 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SubsearchCtrl', function($scope, SearchService) {
+.controller('SubsearchCtrl', function($scope, SearchService, $stateParams) {
+  $scope.$on('$ionicView.enter', function () {
+        $scope.form = $stateParams['searchForm']
+        $scope.searchResult = $stateParams['searchResult']
+    });
   $scope.category = []
   $scope.form = {}
   $scope.form.city = ''

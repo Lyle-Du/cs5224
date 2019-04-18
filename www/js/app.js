@@ -53,6 +53,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         templateUrl: 'templates/subsearch.html',
         controller: 'SubsearchCtrl'
       }
+    },
+    params: {
+      "searchForm": {},
+      "searchResult": {}
     }
   })
   // if none of the above states are matched, use this as the fallback
