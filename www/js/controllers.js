@@ -204,30 +204,29 @@ angular.module('starter.controllers', ['starter.services'])
   };
 
   $scope.cardOnClicked = function onClicked(item) {
-    $state.go('app.details')
+    // TODO:
   }
 
-  var mouseoverTimer;
+  $scope.mouseoverTimer
   $scope.cardOnMouseover = function onMouseover(item) {
     mouseoverTimer = setTimeout(function () {
-      var pos = {
-        lat: item.lat,
-        lng: item.lng
-      };
+      var pos = {lat:item.lat, lng:item.lng};
       map.panTo(pos);
 
       for (var i = 0; i < $scope.searchResult.length; i++) {
         if ($scope.searchResult[i].id == item.id) {
           mapMarkers[i].setOpacity(1.0)
           if (mapMarkers[i].getAnimation() == null) {
+            console.log("SetAnimation lololo")
             mapMarkers[i].setAnimation(google.maps.Animation.BOUNCE)
+          } else {
+            mapMarkers[i].setAnimation(null)
           }
         } else {
-          mapMarkers[i].setAnimation(null)
           mapMarkers[i].setOpacity(0.3)
         }
       }
-    }, 1000);
+    }, 600);
   }
 
   $scope.cardOnMouseout = function onMouseout() {
