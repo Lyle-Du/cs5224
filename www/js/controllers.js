@@ -78,7 +78,7 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams) {
+.controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams, $ionicModal) {
   // Define Google Map
   var map;
   $scope.initMap = function initMap() {
@@ -110,25 +110,27 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form.city = $stateParams['searchForm'].city
   $scope.form.category = $stateParams['searchForm'].category
   $scope.searchResult = $stateParams['searchResult']
-$scope.searchResult = [{
-"id": "4d438c6514aa8cfa743d5c3d",
-"name": "National Gal­lery Singa­pore",
-"address": "1 St. Andrew's Road",
-"lat": 1.2907395913341984,
-"lng": 103.85154786540198,
-"postalCode": "178957",
-"cc": "SG",
-"city": "Singapore",
-"country": "Singapore",
-"categories": [  {
-    "id": "4bf58dd8d48988d1e2931735",
-    "name": "Art Gallery"
-    }
-],
-"tipCount": 105,
-"usersCount": 10464,
-"checkinsCount": 18846,
-"url": "http://www.nationalgallery.sg"
+$scope.searchResult = [
+  {
+  "id": "4d438c6514aa8cfa743d5c3d",
+  "name": "National Gal­lery Singa­pore",
+  "address": "1 St. Andrew's Road",
+  "lat": 1.2907395913341984,
+  "lng": 103.85154786540198,
+  "postalCode": "178957",
+  "cc": "SG",
+  "city": "Singapore",
+  "country": "Singapore",
+  "categories": [  {
+      "id": "4bf58dd8d48988d1e2931735",
+      "name": "Art Gallery"
+      }
+  ],
+  "tweets":["asdsadadasdasdasmdklasjdklasklfnkldsfklaklnklfnaklfnklqnasklndklnskladnklsnadklnaskldnklasndklasnkldklsdadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd"],
+  "tipCount": 105,
+  "usersCount": 10464,
+  "checkinsCount": 18846,
+  "url": "http://www.nationalgallery.sg"
 }]
 
   $scope.view = {}
@@ -237,8 +239,24 @@ $scope.searchResult = [{
       marker.setOpacity(1.0)
     })
   }
-
+  $scope.reviewItem = {}
   $scope.showReview = function showReview(item) {
-    console.log("review is clicked")
+    console.log("review is clicked",item)
+    $scope.reviewItem = item
+    $scope.showReviewModal()
   }
+
+  $ionicModal.fromTemplateUrl('review-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.reviewModal = modal;
+    });
+  $scope.showReviewModal = function () {
+      $scope.reviewModal.show();
+  };
+  $scope.hideReviewModal = function () {
+      $scope.reviewModal.hide();
+      $scope.reviewItem = {};
+  };
 })

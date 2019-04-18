@@ -48,3 +48,36 @@
     </div>
   </div>
 </ion-view>
+
+
+<script id="review-modal.html" type="text/ng-template">
+    <ion-modal-view id="review-modal" style="padding: 8px;">
+      <div class="review-modal-container">
+        <div class="review-modal-header" >
+          <button style="z-index: 99;" class="button button-positive button-clear icon ion-close" type="button" name="button" ng-click="hideReviewModal()"></button>
+
+          <a class="item item-thumbnail-left">
+            <img ng-if="reviewItem['prefix']!=undefined" ng-src="{{reviewItem['prefix']}}100x100{{reviewItem['suffix']}}"></img>
+            <img ng-if="reviewItem['prefix']==undefined" ng-src="/img/logo.png" style="object-fit: contain;"></img>
+                <h2>{{reviewItem["name"]}}</h2>
+                <p>{{reviewItem["description"]}}</p>
+                <p><span ng-repeat="category in reviewItem['categories']">{{category['name']}}</span></p>
+                <p>
+                  <i ng-if="reviewItem['score']>4" class="icon ion-happy"></i>
+                  <i ng-if="reviewItem['score']>3" class="icon ion-happy"></i>
+                  <i ng-if="reviewItem['score']>2" class="icon ion-happy"></i>
+                  <i ng-if="reviewItem['score']>1" class="icon ion-happy"></i>
+                  <i ng-if="reviewItem['score']>0" class="icon ion-happy"></i>
+                  <i ng-if="reviewItem['score']>3">Positive</i>
+                  <i ng-if="reviewItem['score']>1 && reviewItem['score']<=3">Neutral</i>
+                  <i ng-if="reviewItem['score']>0 && reviewItem['score']<=1">Negative</i>
+                  <i ng-if="reviewItem['score']<=0 || reviewItem['score']==undefined">No enough reviews to rate</i>
+                </p>
+          </a>
+        </div>
+        <div class="review-modal-content" >
+          <p ng-repeat="item in reviewItem['tweets'] track by $index">{{item}}</p>
+        </div>
+      </div>
+    </ion-modal-view>
+</script>
