@@ -204,7 +204,7 @@ $scope.searchResult = [{
   };
 
   $scope.cardOnClicked = function onClicked(item) {
-    $state.go('app.details')
+    console.log("card is clicked")
   }
 
   var mouseoverTimer;
@@ -236,5 +236,9 @@ $scope.searchResult = [{
       marker.setAnimation(null)
       marker.setOpacity(1.0)
     })
+  }
+
+  $scope.showReview = function showReview(item) {
+    console.log("review is clicked")
   }
 })
