@@ -178,6 +178,35 @@ ion-spinner+.search-icon {
   margin: 4px;
   width: 32%;
   min-width: 280px;
-  height: 380px;
   max-width: 320px;
+  height: 420px;
+}
+
+.subsearch-container-section .card {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.subsearch-container-section .card img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 70%;
+  object-fit: contain;
+  border: 1px solid grey;
+}
+.subsearch-container-section .card h1 {
+  font-size: 1.2em;
+  width: 100%;
+}
+.subsearch-container-section .card h2 {
+  font-size: 1em;
+  width: 100%;
+}
+.subsearch-container-section .card p {
+  width: 100%;
+  color: #666;
 }

@@ -29,8 +29,13 @@
       <div class="subsearch-container-row">
         <div class="subsearch-container-left">
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
-            <div class="card" ng-repeat="item in searchResult" ng-click="cardOnClicked(item)" ng-mouseover="cardOnMouseover(item)">
-              <h1>sadsadasdsad</h1>
+            <div class="card" ng-repeat="item in searchResult" ng-click="cardOnClicked(item) ng-mouseover="cardOnMouseover(item)">
+              <img src="/img/logo.png"></img>
+              <h1>{{item['name']}}</h1>
+              <h2>{{item['address']}}</h2>
+              <p>
+                <span ng-repeat="category in item['categories']">{{category['name']}}</span>
+              </p>
             </div>
           </ion-scroll>
         </div>
