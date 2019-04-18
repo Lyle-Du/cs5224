@@ -78,14 +78,6 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams) {
-  $scope.category = []
-  $scope.form = $stateParams['searchForm']
-  $scope.form.city = $stateParams['searchForm'].city
-  $scope.form.category = $stateParams['searchForm'].category
-  $scope.searchResult = $stateParams['searchResult']
-  $scope.searchResult = [{},{},{},{},{}]
-  $scope.view = {}
-  $scope.view.isSearchClickable = true
   // Define Google Map
   var map;
   $scope.initMap = function initMap() {
@@ -97,9 +89,23 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.initMap()
 
+  $scope.category = []
+  $scope.form = $stateParams['searchForm']
+  $scope.form.city = $stateParams['searchForm'].city
+  $scope.form.category = $stateParams['searchForm'].category
+  $scope.searchResult = $stateParams['searchResult']
+  $scope.view = {}
+  $scope.view.isSearchClickable = true
+
   // Define Google Map Markers
   var mapMarkers = [];
   $scope.createMarkers = function createMarkers() {
+    // Delete previous markers
+    for (var i = 0; i < mapMarkers.length; i++) {
+      mapMarkers[i].setMap(null)
+    }
+    mapMarkers = []
+
     for (i = 0; i < $scope.searchResult.length; i++) {
       var position = {lat: $scope.searchResult[i].lat, lng: $scope.searchResult[i].lng};
       var marker = new google.maps.Marker({
@@ -107,6 +113,7 @@ angular.module('starter.controllers', ['starter.services'])
         map: map,
         title: 'The Marker'
       });
+      mapMarkers.push(marker)
 
       marker.addListener('click', function() {
         // Nagivate to next screen
@@ -136,6 +143,8 @@ angular.module('starter.controllers', ['starter.services'])
       function (data) {
           console.log(data)
           $scope.searchResult = data
+          // $scope.initMap()
+          $scope.createMarkers()
       },
       function () {
         console.log('search error')
