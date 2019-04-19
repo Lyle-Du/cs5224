@@ -269,8 +269,26 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.reviewItem = {};
   };
 
+  function itemsToPlan() {
+    var itemsToPlan = []
+    for (var i = 0; i < $scope.isCardSelected.length; i++) {
+      if ($scope.isCardSelected[i] == true) {
+        itemsToPlan.push($scope.searchResult[i])
+      }
+    }
+    return itemsToPlan;
+  }
+
   $scope.plan = function plan() {
-    $state.go('app.details')
+    console.log(itemsToPlan())
+    SearchService.planVenues(itemsToPlan()).then(
+      function (data) {
+        console.log(data)
+        $state.go('app.details')
+      },
+      function () {
+        console.log('plan venues error')
+      })
   }
 })
 
