@@ -162,6 +162,11 @@ angular.module('starter.controllers', ['starter.services'])
     }
   }
   $scope.createMarkers()
+  var bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < mapMarkers.length; i++) {
+    bounds.extend(mapMarkers[i].getPosition());
+  }
+  map.fitBounds(bounds);
 
   SearchService.category().then(
     function (data) {
@@ -304,8 +309,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.map = new google.maps.Map(document.getElementById('detailsMap'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 10,
-      disableDefaultUI: true,
-      draggable: false
+      disableDefaultUI: true
     });
   }
 
@@ -324,6 +328,7 @@ angular.module('starter.controllers', ['starter.services'])
     "internet": "The majority of hotels in Singapore provide free WiFi to guests. The government provides free WiFi across the city and in many MRT stations on the Wireless@SG network. You can sign in using a foreign mobile number. However, when using a local mobile number, tourists are required to register with their passport at SingTel, M1 or iCell stores. There are also plenty of free WiFi hotspots in shopping malls and coffee shops."
   }
 
+  var pathCoordinates = [];
   var mapMarkers = [];
   $scope.createMarkers = function createMarkers() {
     for (i = 0; i < $scope.plannedVenues.length; i++) {
@@ -333,6 +338,7 @@ angular.module('starter.controllers', ['starter.services'])
         map: $scope.map
       });
       mapMarkers.push(marker)
+      pathCoordinates.push(position)
     }
     if ($scope.plannedVenues.length > 0) {
       $scope.map.setZoom(15)
@@ -341,20 +347,32 @@ angular.module('starter.controllers', ['starter.services'])
   }
   $scope.createMarkers()
 
-      // if (navigator.geolocation) {
-      //   navigator.geolocation.getCurrentPosition(function(position) {
-      //     var pos = {
-      //       lat: position.coords.latitude,
-      //       lng: position.coords.longitude
-      //     };
-      //     map.setZoom(13)
-      //     map.setCenter(pos);
-      //   }, function() {
-      //     console.log("Failed to get current position")
-      //   });
-      // } else {
-      //   console.log("Browser Geolocation is not supported")
-      // }
+  var lineSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+  };
+
+  if (mapMarkers.length > 1) {
+    for (var i = 1; i < pathCoordinates.length; i++) {
+      var flightPath = new google.maps.Polyline({
+        path: [pathCoordinates[i-1], pathCoordinates[i]],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 5,
+        icons: [{
+          icon: lineSymbol,
+          offset: '100%'
+        }],
+      });
+      flightPath.setMap($scope.map)
+    }
+  }
+
+  var bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < mapMarkers.length; i++) {
+    bounds.extend(mapMarkers[i].getPosition());
+  }
+  $scope.map.fitBounds(bounds);
 
     var ctx = document.getElementById("canvas")
     var myLineChart = new Chart(ctx, {
