@@ -8,11 +8,11 @@
           <img src="img/logo.png" height="60px;">
           </img>
           <div class="main-search-box-container">
-            <div class="main-search-box">
+            <form class="main-search-box" ng-submit="search()">
               <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city"></input>
               <ion-spinner ng-style="{'visibility': !view.isSearchClickable?'visible':'hidden'}"></ion-spinner>
               <button type="button" ng-click="search()" ng-style="{'visibility': view.isSearchClickable?'visible':'hidden'}" class="search-icon button button-large button-clear button-positive icon ion-search" name="button"></button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

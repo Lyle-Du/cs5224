@@ -10,13 +10,13 @@
         </div>
 
         <div class="main-search-box-container">
-          <div class="main-search-box">
-            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city" ></input>
+          <form class="main-search-box" ng-submit="search()">
+            <input class="search-box" type="text" type="search" placeholder="City, Country, Trip Preferences" ng-model="form.city" ng-submit="search()"></input>
             <ion-spinner ng-style="{'visibility': !view.isSearchClickable?'visible':'hidden'}"></ion-spinner>
             <button type="button" class="search-icon button button-large button-clear button-positive icon ion-search"
             name="button" ng-click="search()" ng-style="{'visibility': view.isSearchClickable?'visible':'hidden'}">
             </button>
-          </div>
+          </form>
         </div>
 
         <div class="main-search-toggle-container">
