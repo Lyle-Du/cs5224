@@ -43,6 +43,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         templateUrl: 'templates/details.html',
         controller: 'DetailsCtrl'
       }
+    },
+    params: {
+      "plannedVenues": []
     }
   })
 
