@@ -28,8 +28,6 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('DetailsCtrl', function($scope) {})
-
 .controller('SearchCtrl', function($scope, SearchService, $state, $ionicHistory) {
   $scope.category = []
   $scope.form = {}
@@ -274,4 +272,43 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.plan = function plan() {
     $state.go('app.details')
   }
+})
+
+.controller('DetailsCtrl', function($scope) {
+
+  $scope.summary = {
+      "city":"Singapore",
+      "food": "Singapore has a global dining scene. The influx of different cultures to the city in the 19th century resulted in a wide choice of cuisines becoming commonplace, including Chinese, Malay and Indian. Traditional hawker centers, nowadays also known as food centers, are found throughout the island. They offer a variety of Singaporean cuisine under one roof, and are an ideal way to sample local dishes at rock-bottom prices (from about S$3 upwards).",
+      "emergencies": "Dial 999 for police and 995 for fire or ambulance. \n Call 1777 if you need an ambulance in non-emergency situations",
+      "hospitals": "There are 24-hour, walk-in Accident & Emergency departments at the following central hospitals: - Singapore General Hospital \n - Mount Elizabeth Hospital \n - Non-residents can expect to pay around S$100–S$200 for initial attendance at an emergency department. \n This is payable by cash or credit card.",
+      "shopping": "It’s not surprising that many visitors come to Singapore purely to shop – there are plenty of air-conditioned malls throughout the city center, plus dedicated shopping districts. Some of these are devoted exclusively to designer fashion and accessories; others specialize in electronics and IT. There are also localized neighborhood hubs that offer traditional goods and markets.",
+      "gstrefund":"Visitors can shop tax free, saving the 7% goods and services tax (GST). Among other rules, you have to present your passport in participating stores and make a minimum spend of S$100 in the same store on the same day. The GST refund can be processed at electronic kiosks at Changi Airport or international ferry terminals. Visit the government website for more information on using the Electronic Tourist Refund Scheme (eTRS).",
+      "money":"The Singapore dollar (S$/SGD) is the official currency of Singapore. Coins come in denominations of 5 cents, 10 cents, 20 cents, 50 cents and S$1. Banknotes come in denominations of S$2, S$5, S$10, S$50, S$100, S$500 and S$1,000. There is a S$10,000 note, but it’s rarely used. \n Cash machines can be found at banks, inside malls and at most MRT stations. Credit cards are accepted pretty much everywhere, including taxis; however, a 10% surcharge is added to taxi fares. Visa and Mastercard are the safest bet, as some retailers or food and beverage outlets don’t accept American Express. Small retailers might not accept cards or insist on a minimum purchase.",
+      "internet": "The majority of hotels in Singapore provide free WiFi to guests. The government provides free WiFi across the city and in many MRT stations on the Wireless@SG network. You can sign in using a foreign mobile number. However, when using a local mobile number, tourists are required to register with their passport at SingTel, M1 or iCell stores. There are also plenty of free WiFi hotspots in shopping malls and coffee shops."
+    }
+
+    var map;
+    $scope.initMap = function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          map.setZoom(10)
+          map.setCenter(pos);
+        }, function() {
+          console.log("Failed to get current position")
+        });
+      } else {
+        console.log("Browser Geolocation is not supported")
+      }
+    }
+
+    $scope.initMap()
 })
