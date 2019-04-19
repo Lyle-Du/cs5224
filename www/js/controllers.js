@@ -184,6 +184,7 @@ $scope.searchResult = [
           $scope.createMarkers()
       },
       function () {
+        $scope.searchResult = []
         console.log('search error')
       }).finally(function() {
         $scope.view.isSearchClickable = true
