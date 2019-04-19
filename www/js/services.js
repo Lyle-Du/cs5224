@@ -50,10 +50,12 @@ angular.module('starter.services', [])
   var getVenueByCity = function(city) {
     console.log('Get Venue by city');
     var deferred = $q.defer();
+    var data = {"city":city["city"],"catagory":city["category"]}
+    console.log(data)
     var request = $http({
       method: "get",
-      url: BASE_URL + "/venue/",
-      params: city,
+      url: BASE_URL + "/venue",
+      params: data,
       timeout: 5000,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

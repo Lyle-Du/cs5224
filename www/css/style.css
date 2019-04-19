@@ -276,3 +276,16 @@ right: 0;
 top: 0;
 position: fixed;
 }
+
+.subsearch-container-left {
+  position: relative;
+}
+
+#plan-button{
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  z-index:99;
+  position: absolute;
+  right: 10px;
+}

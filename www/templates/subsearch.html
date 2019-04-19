@@ -16,7 +16,6 @@
           </div>
         </div>
       </div>
-
       <div class="main-search-toggle-container" style="margin-top:-12px;">
         <label class="switch" ng-repeat="item in category">
           <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
@@ -28,6 +27,7 @@
     <div class = "subsearch-container-section">
       <div class="subsearch-container-row">
         <div class="subsearch-container-left">
+          <button id="plan-button" class="icon ion-android-send button button-positive"type="button" name="button">Plan</button>
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
             <div class="card" ng-repeat="item in searchResult" ng-mouseover="cardOnMouseover(item)" ng-mouseout="cardOnMouseout()">
               <div class="card-content" ng-style="{'background-color':(isCardSelected[$index]?'#B5CAF6':'#FFFFFF')}" ng-click="cardOnClicked($index)">
