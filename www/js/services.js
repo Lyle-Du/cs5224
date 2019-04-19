@@ -1,7 +1,8 @@
 angular.module('starter.services', [])
 .factory('SearchService', function ($q, $timeout, $http) {
 
-  BASE_URL = "http://localhost:9000/api";
+  BASE_URL = window.location.host//http://localhost:9000/api";
+  console.log("BASE_URL is",BASE_URL)
 
   var getCategories = function () {
       console.log('getCategories');
