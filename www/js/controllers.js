@@ -51,8 +51,6 @@ angular.module('starter.controllers', ['starter.services'])
       function (data) {
           console.log(data)
           $state.go('app.subsearch', { "searchForm": $scope.form, "searchResult": data })
-          $ionicHistory.nextViewOptions({ disableBack: true });
-          $ionicHistory.clearHistory();
       }, function () {
         console.log('search error')
       }).finally(function() {
@@ -294,7 +292,12 @@ angular.module('starter.controllers', ['starter.services'])
 
 .controller('DetailsCtrl', function($scope, $stateParams) {
 
+  $scope.$on('$ionicView.enter', function() {
+    // alert("Controller entered");
+    });
+
   $scope.map;
+
   $scope.initMap = function initMap() {
     $scope.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
@@ -351,7 +354,7 @@ angular.module('starter.controllers', ['starter.services'])
       // } else {
       //   console.log("Browser Geolocation is not supported")
       // }
-      
+
     var ctx = document.getElementById("canvas")
     var myLineChart = new Chart(ctx, {
       type: 'line',
