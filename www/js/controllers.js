@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicSideMenuDelegate) {
-  $ionicSideMenuDelegate.canDragContent(true);
+  $ionicSideMenuDelegate.canDragContent(false);
   $scope.loginData = {};
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -28,7 +28,8 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SearchCtrl', function($scope, SearchService, $state, $ionicHistory) {
+.controller('SearchCtrl', function($scope, SearchService, $state, $ionicSideMenuDelegate) {
+  $ionicSideMenuDelegate.canDragContent(false);
   $scope.category = []
   $scope.form = {}
   $scope.form.city = ''
@@ -75,7 +76,8 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams, $ionicModal) {
+.controller('SubsearchCtrl', function($scope, SearchService, $state, $stateParams, $ionicModal,$ionicSideMenuDelegate) {
+  $ionicSideMenuDelegate.canDragContent(false);
   // Define Google Map
   var map;
   $scope.initMap = function initMap() {
@@ -276,7 +278,8 @@ angular.module('starter.controllers', ['starter.services'])
   }
 })
 
-.controller('DetailsCtrl', function($scope, $stateParams) {
+.controller('DetailsCtrl', function($scope, $stateParams,$ionicSideMenuDelegate) {
+  $ionicSideMenuDelegate.canDragContent(false);
 
   $scope.$on('$ionicView.enter', function() {
 
