@@ -107,28 +107,6 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form.city = $stateParams['searchForm'].city
   $scope.form.category = $stateParams['searchForm'].category
   $scope.searchResult = $stateParams['searchResult']
-// $scope.searchResult = [
-//   {
-//   "id": "4d438c6514aa8cfa743d5c3d",
-//   "name": "National Gal­lery Singa­pore",
-//   "address": "1 St. Andrew's Road",
-//   "lat": 1.2907395913341984,
-//   "lng": 103.85154786540198,
-//   "postalCode": "178957",
-//   "cc": "SG",
-//   "city": "Singapore",
-//   "country": "Singapore",
-//   "categories": [  {
-//       "id": "4bf58dd8d48988d1e2931735",
-//       "name": "Art Gallery"
-//       }
-//   ],
-//   "tweets":["asdsadadasdasdasmdklasjdklasklfnkldsfklaklnklfnaklfnklqnasklndklnskladnklsnadklnaskldnklasndklasnkldklsdadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd"],
-//   "tipCount": 105,
-//   "usersCount": 10464,
-//   "checkinsCount": 18846,
-//   "url": "http://www.nationalgallery.sg"
-// }]
 
   $scope.view = {}
   $scope.view.isSearchClickable = true
@@ -284,7 +262,7 @@ angular.module('starter.controllers', ['starter.services'])
     console.log(plannedVenues)
     SearchService.planVenues(plannedVenues).then(
       function (data) {
-        $state.go('app.details', { "plannedVenues": data })
+        $state.go('app.details', { "summary": data["cityInformation"],"plannedVenues": data["venueList"] })
       },
       function () {
         console.log('plan venues error')
@@ -295,8 +273,8 @@ angular.module('starter.controllers', ['starter.services'])
 .controller('DetailsCtrl', function($scope, $stateParams) {
 
   $scope.$on('$ionicView.enter', function() {
-    // alert("Controller entered");
-    });
+
+  });
 
   $scope.map;
 
@@ -308,21 +286,11 @@ angular.module('starter.controllers', ['starter.services'])
       draggable: false
     });
   }
-
   $scope.initMap()
-
+  $scope.summary = $stateParams['summary']
   $scope.plannedVenues = $stateParams['plannedVenues']
 
-  $scope.summary = {
-    "city":"Singapore",
-    "food": "Singapore has a global dining scene. The influx of different cultures to the city in the 19th century resulted in a wide choice of cuisines becoming commonplace, including Chinese, Malay and Indian. Traditional hawker centers, nowadays also known as food centers, are found throughout the island. They offer a variety of Singaporean cuisine under one roof, and are an ideal way to sample local dishes at rock-bottom prices (from about S$3 upwards).",
-    "emergencies": "Dial 999 for police and 995 for fire or ambulance. \n Call 1777 if you need an ambulance in non-emergency situations",
-    "hospitals": "There are 24-hour, walk-in Accident & Emergency departments at the following central hospitals: - Singapore General Hospital \n - Mount Elizabeth Hospital \n - Non-residents can expect to pay around S$100–S$200 for initial attendance at an emergency department. \n This is payable by cash or credit card.",
-    "shopping": "It’s not surprising that many visitors come to Singapore purely to shop – there are plenty of air-conditioned malls throughout the city center, plus dedicated shopping districts. Some of these are devoted exclusively to designer fashion and accessories; others specialize in electronics and IT. There are also localized neighborhood hubs that offer traditional goods and markets.",
-    "gstrefund":"Visitors can shop tax free, saving the 7% goods and services tax (GST). Among other rules, you have to present your passport in participating stores and make a minimum spend of S$100 in the same store on the same day. The GST refund can be processed at electronic kiosks at Changi Airport or international ferry terminals. Visit the government website for more information on using the Electronic Tourist Refund Scheme (eTRS).",
-    "money":"The Singapore dollar (S$/SGD) is the official currency of Singapore. Coins come in denominations of 5 cents, 10 cents, 20 cents, 50 cents and S$1. Banknotes come in denominations of S$2, S$5, S$10, S$50, S$100, S$500 and S$1,000. There is a S$10,000 note, but it’s rarely used. \n Cash machines can be found at banks, inside malls and at most MRT stations. Credit cards are accepted pretty much everywhere, including taxis; however, a 10% surcharge is added to taxi fares. Visa and Mastercard are the safest bet, as some retailers or food and beverage outlets don’t accept American Express. Small retailers might not accept cards or insist on a minimum purchase.",
-    "internet": "The majority of hotels in Singapore provide free WiFi to guests. The government provides free WiFi across the city and in many MRT stations on the Wireless@SG network. You can sign in using a foreign mobile number. However, when using a local mobile number, tourists are required to register with their passport at SingTel, M1 or iCell stores. There are also plenty of free WiFi hotspots in shopping malls and coffee shops."
-  }
+  console.log($scope.plannedVenues)
 
   var mapMarkers = [];
   $scope.createMarkers = function createMarkers() {
@@ -341,94 +309,33 @@ angular.module('starter.controllers', ['starter.services'])
   }
   $scope.createMarkers()
 
-      // if (navigator.geolocation) {
-      //   navigator.geolocation.getCurrentPosition(function(position) {
-      //     var pos = {
-      //       lat: position.coords.latitude,
-      //       lng: position.coords.longitude
-      //     };
-      //     map.setZoom(13)
-      //     map.setCenter(pos);
-      //   }, function() {
-      //     console.log("Failed to get current position")
-      //   });
-      // } else {
-      //   console.log("Browser Geolocation is not supported")
-      // }
-
-    var ctx = document.getElementById("canvas")
-    var myLineChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "1 (thousands)",
-            backgroundColor: "#3e95cd",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,12,12321,123,1,3,12]
-          },
-          {
-            label: "2 (thousands)",
-            backgroundColor: "#3e95cd",
-            borderColor: "#3e25cd",
-            data: [2478,567,734,784,433,12,1321,123,1,3,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Popularity (thousands)'
-        }
+  $scope.popularityDataset = $scope.plannedVenues.map(function(element, index){
+    var colors = ["#4F86EC88","#DA504088","#F3BD4288","#56A55C88"]
+    var color = colors[index % colors.length]
+    return {
+      label: element["name"],
+      backgroundColor: color,
+      borderColor: color,
+      data: element["popularity"]
     }
+  })
+
+  $scope.$watch($scope.popularityDataset, function() {
+    console.log("ploting")
+    var ctx = document.getElementById("canvas")
+    console.log($scope.popularityDataset)
+    var myLineChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: $scope.popularityDataset
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Popularity (thousands)'
+            }
+        }
+      });
   });
 })
