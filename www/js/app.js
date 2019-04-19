@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     },
     params: {
-      "searchForm": {},
+      "searchForm": {"city":"","category":[]},
       "searchResult": {}
     }
   })

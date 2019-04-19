@@ -191,7 +191,6 @@ $scope.searchResult = [
       });
   };
 
-  // Toggle selection for a given fruit by name
   $scope.toggleCategory = function toggleCategory(item) {
     var idx = $scope.form.category.indexOf(item);
     // Is currently selected
