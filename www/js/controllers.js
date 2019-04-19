@@ -287,28 +287,79 @@ angular.module('starter.controllers', ['starter.services'])
       "internet": "The majority of hotels in Singapore provide free WiFi to guests. The government provides free WiFi across the city and in many MRT stations on the Wireless@SG network. You can sign in using a foreign mobile number. However, when using a local mobile number, tourists are required to register with their passport at SingTel, M1 or iCell stores. There are also plenty of free WiFi hotspots in shopping malls and coffee shops."
     }
 
-    var map;
-    $scope.initMap = function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-      });
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          map.setZoom(10)
-          map.setCenter(pos);
-        }, function() {
-          console.log("Failed to get current position")
-        });
-      } else {
-        console.log("Browser Geolocation is not supported")
+    var ctx = document.getElementById("canvas")
+    var myLineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [
+          {
+            label: "1 (thousands)",
+            backgroundColor: "#3e95cd",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,12,12321,123,1,3,12]
+          },
+          {
+            label: "2 (thousands)",
+            backgroundColor: "#3e95cd",
+            borderColor: "#3e25cd",
+            data: [2478,567,734,784,433,12,1321,123,1,3,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          },
+          {
+            label: "3 (thousands)",
+            backgroundColor: "#3e9500",
+            borderColor: "#3e95cd",
+            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Popularity (thousands)'
+        }
       }
-    }
-
-    $scope.initMap()
+    });
 })
