@@ -1,7 +1,7 @@
 angular.module('starter.services', [])
 .factory('SearchService', function ($q, $timeout, $http) {
 
-  BASE_URL = "http://localhost:9000/api";
+  BASE_URL = "http://ec2-34-226-147-50.compute-1.amazonaws.com:9000/api";
 
   var getCategories = function () {
       console.log('getCategories');
@@ -28,7 +28,7 @@ angular.module('starter.services', [])
     console.log("Plan Venues")
     var data = {
       data: venues
-      // city: 
+      // city:
     }
 
     var deferred = $q.defer();

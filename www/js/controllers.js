@@ -1,6 +1,7 @@
 angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicSideMenuDelegate) {
+  
   $ionicSideMenuDelegate.canDragContent(false);
   $scope.loginData = {};
   // Create the login modal that we will use later
