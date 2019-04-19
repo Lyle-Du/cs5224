@@ -28,6 +28,7 @@ angular.module('starter.services', [])
     console.log("Plan Venues")
     var data = {
       data: venues
+      // city: 
     }
 
     var deferred = $q.defer();
