@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="main-search-toggle-container" style="margin-top:-12px;">
-        <label class="switch" ng-repeat="item in category">
+        <label class="switch" ng-repeat="item in category track by $index">
           <input type="checkbox" value="{{item['id']}}" ng-checked="form.category.indexOf(item['id']) > -1" ng-click="toggleCategory(item['id'])">
           <span class="switch-content">{{item["name"]}}</span>
         </label>
@@ -29,7 +29,7 @@
         <div class="subsearch-container-left">
           <button id="plan-button" class="icon ion-android-send button button-positive"type="button" name="button" ng-click="plan()" ng-disabled="!isCardSelected.includes(true)">Plan</button>
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
-            <div class="card" ng-repeat="item in searchResult" ng-mouseover="cardOnMouseover(item)" ng-mouseout="cardOnMouseout()">
+            <div class="card" ng-repeat="item in searchResult track by $index" ng-mouseover="cardOnMouseover(item)" ng-mouseout="cardOnMouseout()">
               <div class="card-content" ng-style="{'background-color':(isCardSelected[$index]?'#B5CAF6':'#FFFFFF')}" ng-click="cardOnClicked($index)">
                 <img ng-if="item['prefix']!=undefined"ng-src="{{item['prefix']}}600x600{{item['suffix']}}"></img>
                 <img ng-if="item['prefix']==undefined" ng-src="/img/logo.png" style="object-fit: contain;"></img>
