@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 .factory('SearchService', function ($q, $timeout, $http) {
-  BASE_URL = window.location.host+":9000/api";
+  BASE_URL = "http://"+window.location.host+":9000/api";
   var getCategories = function () {
       console.log('getCategories');
       var deferred = $q.defer();
