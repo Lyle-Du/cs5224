@@ -51,8 +51,8 @@ angular.module('starter.controllers', ['starter.services'])
       function (data) {
           console.log(data)
           $state.go('app.subsearch', { "searchForm": $scope.form, "searchResult": data })
-          $ionicHistory.nextViewOptions({ disableBack: true });
-          $ionicHistory.clearHistory();
+          // $ionicHistory.nextViewOptions({ disableBack: true });
+          // $ionicHistory.clearHistory();
       }, function () {
         console.log('search error')
       }).finally(function() {
@@ -296,12 +296,11 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.map;
   $scope.initMap = function initMap() {
-    $scope.map = new google.maps.Map(document.getElementById('map'), {
+    $scope.map = new google.maps.Map(document.getElementById('detailsMap'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 10,
-      scaleControl: false,
-      draggable: false,
-      disableDefaultUI: true
+      disableDefaultUI: true,
+      draggable: false
     });
   }
 
@@ -320,111 +319,96 @@ angular.module('starter.controllers', ['starter.services'])
     "internet": "The majority of hotels in Singapore provide free WiFi to guests. The government provides free WiFi across the city and in many MRT stations on the Wireless@SG network. You can sign in using a foreign mobile number. However, when using a local mobile number, tourists are required to register with their passport at SingTel, M1 or iCell stores. There are also plenty of free WiFi hotspots in shopping malls and coffee shops."
   }
 
-  // var mapMarkers = [];
-  // $scope.createMarkers = function createMarkers() {
-  //   for (i = 0; i < $scope.plannedVenues.length; i++) {
-  //     var position = {lat: $scope.plannedVenues[i].lat, lng: $scope.plannedVenues[i].lng};
-  //     var marker = new google.maps.Marker({
-  //       position: position,
-  //       map: $scope.map
-  //     });
-  //     mapMarkers.push(marker)
-  //   }
-  //   if ($scope.plannedVenues.length > 0) {
-  //     $scope.map.setZoom(17)
-  //     $scope.map.panTo({lat: $scope.plannedVenues[0].lat, lng: $scope.plannedVenues[0].lng})
-  //   }
-  // }
-  // $scope.createMarkers()
+  var mapMarkers = [];
+  $scope.createMarkers = function createMarkers() {
+    for (i = 0; i < $scope.plannedVenues.length; i++) {
+      var position = {lat: $scope.plannedVenues[i].lat, lng: $scope.plannedVenues[i].lng};
+      var marker = new google.maps.Marker({
+        position: position,
+        map: $scope.map
+      });
+      mapMarkers.push(marker)
+    }
+    if ($scope.plannedVenues.length > 0) {
+      $scope.map.setZoom(15)
+      $scope.map.setCenter({lat: $scope.plannedVenues[0].lat, lng: $scope.plannedVenues[0].lng});
+    }
+  }
+  $scope.createMarkers()
 
-      // if (navigator.geolocation) {
-      //   navigator.geolocation.getCurrentPosition(function(position) {
-      //     var pos = {
-      //       lat: position.coords.latitude,
-      //       lng: position.coords.longitude
-      //     };
-      //     map.setZoom(13)
-      //     map.setCenter(pos);
-      //   }, function() {
-      //     console.log("Failed to get current position")
-      //   });
-      // } else {
-      //   console.log("Browser Geolocation is not supported")
-      // }
-      
-    var ctx = document.getElementById("canvas")
-    var myLineChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "1 (thousands)",
-            backgroundColor: "#3e95cd",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,12,12321,123,1,3,12]
-          },
-          {
-            label: "2 (thousands)",
-            backgroundColor: "#3e95cd",
-            borderColor: "#3e25cd",
-            data: [2478,567,734,784,433,12,1321,123,1,3,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          },
-          {
-            label: "3 (thousands)",
-            backgroundColor: "#3e9500",
-            borderColor: "#3e95cd",
-            data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Popularity (thousands)'
+  var ctx = document.getElementById("canvas")
+  var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [
+        {
+          label: "1 (thousands)",
+          backgroundColor: "#3e95cd",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,12,12321,123,1,3,12]
+        },
+        {
+          label: "2 (thousands)",
+          backgroundColor: "#3e95cd",
+          borderColor: "#3e25cd",
+          data: [2478,567,734,784,433,12,1321,123,1,3,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
+        },
+        {
+          label: "3 (thousands)",
+          backgroundColor: "#3e9500",
+          borderColor: "#3e95cd",
+          data: [2478,5267,734,784,433,21312,12321,123,123132,233,12]
         }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Popularity (thousands)'
       }
-    });
+    }
+  });
 })
