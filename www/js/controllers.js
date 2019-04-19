@@ -140,6 +140,11 @@ angular.module('starter.controllers', ['starter.services'])
     }
   }
   $scope.createMarkers()
+  var bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < mapMarkers.length; i++) {
+    bounds.extend(mapMarkers[i].getPosition());
+  }
+  map.fitBounds(bounds);
 
   SearchService.category().then(
     function (data) {
@@ -282,8 +287,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.map = new google.maps.Map(document.getElementById('detailsMap'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 10,
-      disableDefaultUI: true,
-      draggable: false
+      disableDefaultUI: true
     });
   }
   $scope.initMap()
@@ -292,6 +296,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   console.log($scope.plannedVenues)
 
+  var pathCoordinates = [];
   var mapMarkers = [];
   $scope.createMarkers = function createMarkers() {
     for (i = 0; i < $scope.plannedVenues.length; i++) {
@@ -301,6 +306,7 @@ angular.module('starter.controllers', ['starter.services'])
         map: $scope.map
       });
       mapMarkers.push(marker)
+      pathCoordinates.push(position)
     }
     if ($scope.plannedVenues.length > 0) {
       $scope.map.setZoom(15)
@@ -320,6 +326,32 @@ angular.module('starter.controllers', ['starter.services'])
     }
   })
 
+  var lineSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+  };
+
+  if (mapMarkers.length > 1) {
+    for (var i = 1; i < pathCoordinates.length; i++) {
+      var flightPath = new google.maps.Polyline({
+        path: [pathCoordinates[i-1], pathCoordinates[i]],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 5,
+        icons: [{
+          icon: lineSymbol,
+          offset: '100%'
+        }],
+      });
+      flightPath.setMap($scope.map)
+    }
+  }
+
+  var bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < mapMarkers.length; i++) {
+    bounds.extend(mapMarkers[i].getPosition());
+  }
+  $scope.map.fitBounds(bounds);
   $scope.$watch($scope.popularityDataset, function() {
     console.log("ploting")
     var ctx = document.getElementById("canvas")
