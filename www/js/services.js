@@ -24,6 +24,34 @@ angular.module('starter.services', [])
       return deferred.promise;
   };
 
+  var planVenues = function(venues) {
+    console.log("Plan Venues")
+    var data = {
+      data: venues
+    }
+
+    var deferred = $q.defer();
+    var request = $http({
+      method: "post",
+      url: BASE_URL + "/venue/sort",
+      data: JSON.stringify(data),
+      timeout: 5000,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    console.log(request);
+    request.success(function(data) {
+      console.log(data);
+      deferred.resolve(data);
+    }).error(function(data) {
+      console.log(data);
+      deferred.reject();
+    });
+
+    return deferred.promise;
+  }
+
   var getAllVenues = function() {
     console.log('Get all venues');
     var deferred = $q.defer();
@@ -80,6 +108,7 @@ angular.module('starter.services', [])
 
   return {
     category: getCategories,
+    planVenues: planVenues,
     venues: getAllVenues,
     venueByCity: getVenueByCity
   }
