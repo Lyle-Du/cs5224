@@ -189,6 +189,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.isCardSelected = []
   function initIsCardSelected() {
+    isCardSelected = []
     $scope.searchResult.forEach(function(result) {
       $scope.isCardSelected.push(false)
     })
