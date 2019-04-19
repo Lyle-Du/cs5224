@@ -27,7 +27,7 @@
     <div class = "subsearch-container-section">
       <div class="subsearch-container-row">
         <div class="subsearch-container-left">
-          <button id="plan-button" class="icon ion-android-send button button-positive"type="button" name="button">Plan</button>
+          <button id="plan-button" class="icon ion-android-send button button-positive"type="button" name="button" ng-click="plan()">Plan</button>
           <ion-scroll class = "scroll" has-bouncing="false" scrollbar-x="false" scrollbar-y="false">
             <div class="card" ng-repeat="item in searchResult" ng-mouseover="cardOnMouseover(item)" ng-mouseout="cardOnMouseout()">
               <div class="card-content" ng-style="{'background-color':(isCardSelected[$index]?'#B5CAF6':'#FFFFFF')}" ng-click="cardOnClicked($index)">

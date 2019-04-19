@@ -198,6 +198,7 @@ ion-spinner+.search-icon {
 .subsearch-container-section .card img {
   margin-left: auto;
   margin-right: auto;
+  padding: 8px 8px 0px 8px;
   width: 100%;
   height: 80%;
   object-fit: cover;

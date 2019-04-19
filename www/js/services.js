@@ -50,7 +50,7 @@ angular.module('starter.services', [])
   var getVenueByCity = function(city) {
     console.log('Get Venue by city');
     var deferred = $q.defer();
-    var data = {"city":city["city"],"catagory":city["category"]}
+    var data = {"city":city["city"],"category":city["category"].join(',')}
     console.log(data)
     var request = $http({
       method: "get",

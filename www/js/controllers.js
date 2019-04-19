@@ -63,7 +63,6 @@ angular.module('starter.controllers', ['starter.services'])
       });
   };
 
-  // Toggle selection for a given fruit by name
   $scope.toggleCategory = function toggleCategory(item) {
     var idx = $scope.form.category.indexOf(item);
     // Is currently selected
@@ -110,28 +109,28 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.form.city = $stateParams['searchForm'].city
   $scope.form.category = $stateParams['searchForm'].category
   $scope.searchResult = $stateParams['searchResult']
-$scope.searchResult = [
-  {
-  "id": "4d438c6514aa8cfa743d5c3d",
-  "name": "National Gal­lery Singa­pore",
-  "address": "1 St. Andrew's Road",
-  "lat": 1.2907395913341984,
-  "lng": 103.85154786540198,
-  "postalCode": "178957",
-  "cc": "SG",
-  "city": "Singapore",
-  "country": "Singapore",
-  "categories": [  {
-      "id": "4bf58dd8d48988d1e2931735",
-      "name": "Art Gallery"
-      }
-  ],
-  "tweets":["asdsadadasdasdasmdklasjdklasklfnkldsfklaklnklfnaklfnklqnasklndklnskladnklsnadklnaskldnklasndklasnkldklsdadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd"],
-  "tipCount": 105,
-  "usersCount": 10464,
-  "checkinsCount": 18846,
-  "url": "http://www.nationalgallery.sg"
-}]
+// $scope.searchResult = [
+//   {
+//   "id": "4d438c6514aa8cfa743d5c3d",
+//   "name": "National Gal­lery Singa­pore",
+//   "address": "1 St. Andrew's Road",
+//   "lat": 1.2907395913341984,
+//   "lng": 103.85154786540198,
+//   "postalCode": "178957",
+//   "cc": "SG",
+//   "city": "Singapore",
+//   "country": "Singapore",
+//   "categories": [  {
+//       "id": "4bf58dd8d48988d1e2931735",
+//       "name": "Art Gallery"
+//       }
+//   ],
+//   "tweets":["asdsadadasdasdasmdklasjdklasklfnkldsfklaklnklfnaklfnklqnasklndklnskladnklsnadklnaskldnklasndklasnkldklsdadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd","asdsadadasd"],
+//   "tipCount": 105,
+//   "usersCount": 10464,
+//   "checkinsCount": 18846,
+//   "url": "http://www.nationalgallery.sg"
+// }]
 
   $scope.view = {}
   $scope.view.isSearchClickable = true
@@ -155,7 +154,8 @@ $scope.searchResult = [
       mapMarkers.push(marker)
 
       marker.addListener('click', function() {
-        $state.go('app.details')
+        //$state.go('app.details')
+        console.log("do something for marker")
       });
     }
     if ($scope.searchResult.length > 0) {
@@ -203,6 +203,7 @@ $scope.searchResult = [
       $scope.form.category.push(item);
     }
     console.log($scope.form.category)
+    $scope.search()
   };
 
   $scope.isCardSelected = []
@@ -269,4 +270,8 @@ $scope.searchResult = [
       $scope.reviewModal.hide();
       $scope.reviewItem = {};
   };
+
+  $scope.plan = function plan() {
+    $state.go('app.details')
+  }
 })
